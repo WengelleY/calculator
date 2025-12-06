@@ -1,0 +1,138 @@
+body {
+    background: #e5c6ff;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.calculator {
+    width: 280px;
+    background: white;
+    padding: 25px;
+    border-radius: 30px;
+    box-shadow: 0px 10px 30px rgba(0,0,0,0.1);
+}
+
+.display {
+    background: rgba(236, 242, 242);
+    height: 90px;             /* Slightly taller to fit both lines */
+    border-radius: 30px;
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;   /* Stack the two texts vertically */
+    justify-content: center;
+    padding: 6px 20px;
+    box-shadow:
+        0 0 0 5px rgba(255,255,255,0.7),
+        6px 6px 12px rgba(0,0,0,0.18);
+}
+
+/* Small history text */
+.last-calc {
+    font-size: 0.9rem;
+    color: #888;       /* Soft grey */
+    text-align: right;
+    height: 18px;      /* Keeps space even if empty */
+}
+
+/* Main display text */
+#displayMain {
+    font-size: 2.3rem;
+    font-weight: 600;
+    color: rgba(103, 107, 108);
+    text-align: right;
+}
+
+
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+button {
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    width: 60px;       /* set fixed width */
+    height: 60px; 
+    border: none;
+    background: rgba(236, 242, 242);
+    padding: 18px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.1),
+                -4px -4px 10px white;
+    cursor: pointer;
+    transition: 0.2s ;
+
+}
+button:hover{
+    opacity: 70%;
+}
+button:active {
+    transform: scale(0.95);
+}
+
+.equal {
+    grid-column: span 2;    /* span 2 columns */
+    width: auto;            /* let grid control width */
+    height: 60px;           /* same height as other buttons */
+    border-radius: 30px;    /* rounded rectangle instead of full circle */
+    background: #e4a5c7;
+}
+@media (max-width: 600px) {
+    /* Display background like iPhone */
+    body{
+        background-color: black;
+    }
+    .display {
+        background: #f2f2f2;
+        box-shadow: none;
+    }
+
+    #displayMain {
+        color: black;
+    }
+
+    .last-calc {
+        color: #666;
+    }
+
+    /* All buttons default style */
+    .buttons button {
+        background: #d4d4d2; /* number buttons */
+        color: black;
+        box-shadow: none;
+    }
+
+    /* Operator buttons (+, -, *, /) */
+    .buttons button:nth-child(4),
+    .buttons button:nth-child(8),
+    .buttons button:nth-child(12),
+    .buttons button:nth-child(16) {
+        background: #ff9500;
+        color: white;
+    }
+
+    /* CLR and DEL (first two buttons) and % */
+    .buttons button:nth-child(1),
+    .buttons button:nth-child(2),
+    .buttons button:nth-child(3) {
+        background: #505050;
+        color: white;
+    }
+
+    /* Equal button */
+    .buttons .equal {
+        background: #ff9500;
+        color: white;
+        grid-column: span 2;
+    }
+}
+
+
+
