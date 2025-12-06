@@ -24,6 +24,7 @@ body {
     flex-direction: column;   /* Stack the two texts vertically */
     justify-content: center;
     padding: 6px 20px;
+    overflow: hidden;
     box-shadow:
         0 0 0 5px rgba(255,255,255,0.7),
         6px 6px 12px rgba(0,0,0,0.18);
