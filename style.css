@@ -134,6 +134,13 @@ button:active {
         grid-column: span 2;
     }
 }
+#additional{
+    margin: 13px;
+
+}
 
 
 
+a {
+    text-decoration: none;
+}
