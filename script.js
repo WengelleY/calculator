@@ -2,7 +2,6 @@ let displayMain = document.getElementById("displayMain");
 let lastCalc = document.getElementById("lastCalc");
 let justCalculated = false; 
 
-// Adjust font size dynamically based on length
 function adjustFontSize() {
     let length = displayMain.innerText.length;
 
@@ -17,12 +16,10 @@ function adjustFontSize() {
     }
 }
 
-// Append numbers or operators
 function appendValue(value) {
     const operators = ["+", "-", "*", "/", "^"];
     const functions = ["log(", "ln(", "sqrt(", "exp("];
 
-    // After a calculation
     if (justCalculated) {
         if (operators.includes(value) || functions.includes(value)) {
             displayMain.innerText += value;
@@ -38,10 +35,9 @@ function appendValue(value) {
         displayMain.innerText += value;
     }
 
-    adjustFontSize(); // update font size after appending
+    adjustFontSize(); 
 }
 
-// Clear display
 function clearDisplay() {
     displayMain.innerText = "0";
     lastCalc.innerText = "";
@@ -49,33 +45,26 @@ function clearDisplay() {
     adjustFontSize();
 }
 
-// Delete last character
 function deleteLast() {
     displayMain.innerText = displayMain.innerText.slice(0, -1) || "0";
     adjustFontSize();
 }
 
-// Calculate expression
 function calculate() {
     try {
         let expression = displayMain.innerText;
 
-        // Replace ^ with ** for exponent
         expression = expression.replace(/\^/g, "**");
 
-        // Close missing parentheses
         let openParens = (expression.match(/\(/g) || []).length;
         let closeParens = (expression.match(/\)/g) || []).length;
         expression += ")".repeat(openParens - closeParens);
 
-        // Evaluate with math.js
         let result = math.evaluate(expression);
 
-        // Update display
         displayMain.innerText = result;
         lastCalc.innerText = expression + " = " + result;
 
-        // Save history
         let history = JSON.parse(localStorage.getItem("calcHistory")) || [];
         history.push({ expression, result });
         localStorage.setItem("calcHistory", JSON.stringify(history));
@@ -90,15 +79,12 @@ function calculate() {
     }
 }
 
-// Save display before switching pages
 function saveDisplayBeforeSwitch() {
     localStorage.setItem("currentDisplay", displayMain.innerText);
     localStorage.setItem("lastCalcDisplay", lastCalc.innerText);
 }
 
-// Load saved display when page opens
 window.onload = () => {
-    // Restore display
     let savedDisplay = localStorage.getItem("currentDisplay");
     let savedLast = localStorage.getItem("lastCalcDisplay");
 
